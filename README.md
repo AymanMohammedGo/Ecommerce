@@ -1,11 +1,11 @@
-Demo:https://e-commerce723.netlify.app/  .\
-Features in the project :.\
-Can Add products to cart and manage your cart by increase, decrease quantity or delete from cart, Save cart items in local storage Filter products by category , using search by name. .\
-View product details , can see reviews , post a review . .\
-And also see products related to it. .\
-Authentication (login, sign up). .\
-Authorization only users can doing check out, only admin can control dashboard, control products (delete it or add new), Admin control users..\
-Technologies I used: Reactjs, Redux toolkit, React router, rest apis, hooks, React , Motion framer, Sweetalert, Toastify, Html5, Css3, Javascript, Bootstrap, Firebase authentication, Firestore database..\
+Demo:https://e-commerce723.netlify.app/  \
+Features in the project :\
+Can Add products to cart and manage your cart by increase, decrease quantity or delete from cart, Save cart items in local storage Filter products by category , using search by name. \
+View product details , can see reviews , post a review . \
+And also see products related to it. \
+Authentication (login, sign up). \
+Authorization only users can doing check out, only admin can control dashboard, control products (delete it or add new), Admin control users.\
+Technologies I used: Reactjs, Redux toolkit, React router, rest apis, hooks, React , Motion framer, Sweetalert, Toastify, Html5, Css3, Javascript, Bootstrap, Firebase authentication, Firestore database.\
 
 
 
