@@ -1,3 +1,16 @@
+Demo:https://e-commerce723.netlify.app/
+Features in the project :
+Can Add products to cart and manage your cart by increase, decrease quantity or delete from cart, Save cart items in local storage Filter products by category , using search by name. 
+View product details , can see reviews , post a review . 
+And also see products related to it. 
+Authentication (login, sign up). 
+Authorization only users can doing check out, only admin can control 
+dashboard, control products (delete it or add new), Admin control 
+users.
+Technologies I used: Reactjs, Redux toolkit, React router, rest apis, hooks, React , Motion framer, Sweetalert, Toastify, Html5, Css3, Javascript, Bootstrap, Firebase authentication, Firestore database.
+
+
+
 In the project directory, you can run:
 
 ### `npm start`
@@ -33,31 +46,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
 
