@@ -1,0 +1,11 @@
+.title_section_home {
+  background-color: var(--oneColor);
+  padding: 0px;
+}
+.title_section_home::before {
+  content: "";
+}
+.section_title {
+  color: white;
+  padding: 10px 0px;
+}

@@ -1,0 +1,8 @@
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 1;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: var(--twoColor);
+}

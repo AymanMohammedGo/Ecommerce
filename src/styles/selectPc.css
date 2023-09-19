@@ -1,0 +1,79 @@
+.form-all {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: #f7f7f7;
+  padding: 15px 20px;
+  border-right: 8px solid var(--twoColor);
+}
+.form-all select {
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  background-position: left 0.75rem center;
+}
+
+.form-all label {
+  flex-basis: 200px;
+}
+.form-all span {
+  flex-basis: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: end;
+}
+.form-all div {
+  display: flex;
+  flex-basis: 101%;
+}
+.form-all input {
+  margin-right: 10px;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  text-align: center;
+}
+.cancel {
+  background-color: var(--oneColor) !important;
+}
+.imageInTool {
+  width: 130px;
+  margin: 10px 15px;
+  border-top: 3px solid var(--oneColor);
+  border-bottom: 3px solid var(--twoColor);
+  border-right: 3px solid var(--oneColor);
+  border-left: 3px solid var(--twoColor);
+  padding: 10px;
+  border-radius: 10px;
+}
+.form-allTotal {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+}
+.form-allTotal span {
+  flex-basis: 100px;
+  text-align: center;
+}
+.form-allTotal label {
+  flex-basis: 150px;
+  text-align: center;
+  background-color: var(--oneColor);
+  color: white;
+  padding: 15px 10px;
+  border-radius: 8px;
+
+  font-weight: 700;
+}
+.form-allTotal span {
+  flex-basis: 150px;
+  border-bottom: 4px;
+  border-bottom-color: var(--oneColor);
+  border-bottom-style: solid;
+  width: 150px;
+  margin-right: 20px;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}

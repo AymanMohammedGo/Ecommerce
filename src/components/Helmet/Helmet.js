@@ -1,7 +1,7 @@
 import React from "react";
 
 function Helmet(props) {
-  document.title = "Maltimart - " + props.title;
+  document.title = "Ecommerce - " + props.title;
   return <div className="w-100">{props.children}</div>;
 }
 

@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import { Container, Row, Col } from "reactstrap";
-import { useParams } from "react-router-dom";
-import products from "../assets/data/products";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductsList from "../components/UI/ProductsList";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
@@ -11,40 +10,72 @@ import "../styles/productDetails.css";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
-
+import { collection, addDoc } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
+import { db } from "../firebase.confgi";
+import { doc, getDoc } from "firebase/firestore";
+import useGetData from "../custom-hooks/useGetData";
+import useAuth from "../custom-hooks/useAuth";
 const ProductDetails = () => {
-  //const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
+  const [reviews, setReviews] = useState({});
+
+  const { currentUser } = useAuth();
   const { id } = useParams();
   const [tab, setTab] = useState("desc");
-  const reviewUser = useRef("");
+  const navigate = useNavigate();
   const reviewMsg = useRef("");
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(null);
-  const product = products.find((item) => item.id === id);
 
-  const {
-    imgUrl,
-    productName,
-    price,
-    avgRating,
-    reviews,
-    description,
-    shortDesc,
-    category,
-  } = product;
+  const { data: products } = useGetData("products");
+
+  const getReviews = async () => {
+    const rev = [];
+    const colRef = collection(db, "products", id, "reviews");
+    try {
+      const docsSnap = await getDocs(colRef);
+      docsSnap.forEach((doc) => {
+        rev.push(doc.data());
+      });
+    } catch {
+      console.log("خطا بجلب التقيمات");
+    }
+    setReviews(rev);
+  };
+
+  const getProduct = async () => {
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setProduct(docSnap.data());
+    } else {
+      console.log("لايوجد منتج");
+    }
+  };
+  useEffect(() => {
+    getProduct();
+    getReviews();
+  }, [id, products]);
+  const { imgUrl, productName, price, description, shortDesc, category } =
+    product;
 
   const relatedProducts = products.filter((item) => item.category === category);
   const submitHandler = (e) => {
     e.preventDefault();
-    const reviewUserName = reviewUser.current.value;
+
     const reviewUserMsg = reviewMsg.current.value;
-    const reviewObj = {
-      userName: reviewUserName,
+
+    const docRef = collection(db, "products", id, "reviews");
+
+    addDoc(docRef, {
       text: reviewUserMsg,
-      rating,
-    };
-    console.log(reviewObj);
-    toast.success("Review submitted");
+      nameUser: currentUser.reloadUserInfo.displayName,
+      photoUser: currentUser.reloadUserInfo.photoUrl,
+    });
+
+    toast.success("تم اضافة التقيم بنجاح");
+    reviewMsg.current.value = null;
+    getReviews();
   };
 
   const addToCart = () => {
@@ -56,7 +87,7 @@ const ProductDetails = () => {
         price,
       })
     );
-    toast.success("Product added successfully");
+    toast.success("تم اضافة المنتج بنجاح");
   };
 
   useEffect(() => {
@@ -64,14 +95,13 @@ const ProductDetails = () => {
   }, [product]);
   return (
     <Helmet title={productName}>
-      <CommonSection title={productName} />
-      <section className="pt-0">
+      <section className="py-0">
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="4" className="mt-3">
               <img src={imgUrl} alt="" />
             </Col>
-            <Col lg="6">
+            <Col lg="8" className="px-5 d-flex  justify-content-center">
               <div className="product_details">
                 <h2>{productName}</h2>
                 <div className="product_rating d-flex align-item-center gap-5 mb-3">
@@ -94,13 +124,15 @@ const ProductDetails = () => {
                   </div>
 
                   <p>
-                    {" "}
-                    <span>{avgRating}</span> ratings
+                    (<span>التقيمات</span> "4.5" )
                   </p>
                 </div>
                 <div className="d-flex align-items-center gap-5">
-                  <span className="product_price">${price}</span>
-                  <span>Categore: {category.toUpperCase()}</span>
+                  <span className="product_price">
+                    {parseInt(price).toLocaleString()}
+                    <span className="fs-6">ل.س</span>
+                  </span>
+                  <span>التصنيف: {category}</span>
                 </div>
                 <p className="mt-3">{shortDesc}</p>
                 <motion.button
@@ -108,7 +140,7 @@ const ProductDetails = () => {
                   className="shop_btn"
                   onClick={addToCart}
                 >
-                  Add to Cart
+                  اضافة الى المشتريات
                 </motion.button>
               </div>
             </Col>
@@ -124,100 +156,165 @@ const ProductDetails = () => {
                   className={`${tab === "desc" ? "active_tab" : ""}`}
                   onClick={() => setTab("desc")}
                 >
-                  Descripition
+                  شرح أكثر
                 </h6>
                 <h6
                   className={`${tab === "rev" ? "active_tab" : ""}`}
                   onClick={() => setTab("rev")}
                 >
-                  Reviews ({reviews.length}) Reviews
+                  التعليقات ({reviews.length})
                 </h6>
               </div>
               {tab === "desc" ? (
                 <div className="tab_content mt-5">
-                  <p>{description}</p>
+                  {category !== "اجهزة الكمبيوتر المحمول" && (
+                    <p>{description}</p>
+                  )}
                 </div>
               ) : (
                 <div className="product_review mt-5">
                   <div className="review_wrapper">
-                    <ul>
-                      {reviews?.map((item, index) => (
-                        <li key={index} className="mb-4">
-                          <h6>Jhon Doe</h6>
-                          <span>{item.rating} (rating)</span>
-                          <p>{item.text}</p>
-                        </li>
-                      ))}
-                    </ul>
+                    {reviews.length > 0 && (
+                      <>
+                        {reviews.map((item) => (
+                          <div className="commentProducts my-3">
+                            <img
+                              className="imageRev"
+                              src={item.photoUser}
+                              alt=""
+                            />
+                            <div>
+                              <h5>{item.nameUser}</h5>
+                              <span>{item.text}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </>
+                    )}
+
                     <div className="review_form">
-                      <h4>Leave your experience</h4>
+                      <h4>اكتب تعليق عن تجربتك</h4>
 
                       <form onSubmit={submitHandler}>
-                        <div className="form_group">
-                          <input
-                            ref={reviewUser}
-                            type="text"
-                            placeholder="Enter name"
-                            required
-                          />
-                        </div>
-                        <div className="form_group d-flex align-items-center gap-5 rating_group">
-                          <motion.span
-                            whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(1)}
-                          >
-                            1<i class="ri-star-s-fill"></i>
-                          </motion.span>
-                          <motion.span
-                            whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(2)}
-                          >
-                            2<i class="ri-star-s-fill"></i>
-                          </motion.span>
-                          <motion.span
-                            whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(3)}
-                          >
-                            3<i class="ri-star-s-fill"></i>
-                          </motion.span>
-                          <motion.span
-                            whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(4)}
-                          >
-                            4<i class="ri-star-s-fill"></i>
-                          </motion.span>
-                          <motion.span
-                            whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(5)}
-                          >
-                            5<i class="ri-star-s-fill"></i>
-                          </motion.span>
-                        </div>
                         <div className="form_group">
                           <textarea
                             ref={reviewMsg}
                             rows={4}
                             type="text"
-                            placeholder="Review massage..."
+                            placeholder="رسالة التعليق..."
                             required
                           />
                         </div>
-                        <motion.button
-                          whileTap={{ scale: 1.2 }}
-                          type="submit"
-                          className="shop_btn"
-                        >
-                          Submit
-                        </motion.button>
+                        {currentUser ? (
+                          <motion.button
+                            whileTap={{ scale: 1.2 }}
+                            type="submit"
+                            className="shop_btn mt-0"
+                          >
+                            اضافة تعليق
+                          </motion.button>
+                        ) : (
+                          <>
+                            يرجى تسجيل الدخول لاضافة تعليق
+                            <motion.button
+                              whileTap={{ scale: 1.2 }}
+                              type="submit"
+                              className="shop_btn mt-0 mx-3"
+                              onClick={() => {
+                                navigate("/login");
+                              }}
+                            >
+                              تسجيل الدخول
+                            </motion.button>
+                          </>
+                        )}
                       </form>
                     </div>
                   </div>
                 </div>
               )}
             </Col>
+            {category === "اجهزة الكمبيوتر المحمول" && tab === "desc" && (
+              <Col lg="12">
+                <table className="table">
+                  <thead></thead>
+                  <tbody>
+                    <tr>
+                      <td>المعالج</td>
+                      <td>{product.enter1}</td>
+                    </tr>
+                    <tr>
+                      <td>التردد / الأنوية</td>
+                      <td>{product.enter2}</td>
+                    </tr>
+                    <tr>
+                      <td>الذاكرة العشوائية</td>
+                      <td>{product.enter3}</td>
+                    </tr>
+                    <tr>
+                      <td>التخزين</td>
+                      <td>{product.enter4}</td>
+                    </tr>
+                    <tr>
+                      <td>حجم الشاشة</td>
+                      <td>{product.enter5}</td>
+                    </tr>
+                    <tr>
+                      <td>دقة الشاشة</td>
+                      <td>{product.enter6}</td>
+                    </tr>
+                    <tr>
+                      <td>كرت الشاشة</td>
+                      <td>{product.enter7}</td>
+                    </tr>
+                    <tr>
+                      <td>موديل كرت الشاشة</td>
+                      <td>{product.enter8}</td>
+                    </tr>
+                    <tr>
+                      <td>السواقة الليزرية</td>
+                      <td>{product.enter9}</td>
+                    </tr>
+                    <tr>
+                      <td>كاميرا الويب</td>
+                      <td>{product.enter10}</td>
+                    </tr>
+                    <tr>
+                      <td>الشبكة اللاسلكية</td>
+                      <td>{product.enter11}</td>
+                    </tr>
+                    <tr>
+                      <td>نظام الاتصال السلكي</td>
+                      <td>{product.enter12}</td>
+                    </tr>
+                    <tr>
+                      <td>نظام الصوت</td>
+                      <td>{product.enter13}</td>
+                    </tr>
+                    <tr>
+                      <td>المنافذ</td>
+                      <td>{product.enter14}</td>
+                    </tr>
+                    <tr>
+                      <td>البطارية</td>
+                      <td>{product.enter15}</td>
+                    </tr>
+                    <tr>
+                      <td>الوزن</td>
+                      <td>{product.enter16}</td>
+                    </tr>
+                    <tr>
+                      <td>نظام التشغيل</td>
+                      <td>{product.enter17}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </Col>
+            )}
             <Col lg="12" className="mt-5">
-              <h2 className="related_title">You might also like</h2>
+              <h2 className="related_title">اقتراحات يمكن ان تنال اعجابك</h2>
             </Col>
+
             <ProductsList data={relatedProducts} />
           </Row>
         </Container>

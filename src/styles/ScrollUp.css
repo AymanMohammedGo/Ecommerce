@@ -1,0 +1,31 @@
+.up {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: var(--twoColor);
+  color: white !important;
+  cursor: pointer;
+  display: none;
+  border: none;
+  z-index: 10;
+}
+.scrollUp button i {
+  font-size: 30px;
+}
+.down {
+  position: fixed;
+  bottom: 20px;
+  left: 80px;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: var(--twoColor);
+  color: white !important;
+  cursor: pointer;
+  display: none;
+  border: none;
+  z-index: 10;
+}

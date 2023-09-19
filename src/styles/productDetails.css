@@ -1,5 +1,9 @@
 .product_details {
   margin-top: 70px;
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .product_details h2 {
   font-size: 1.6rem;
@@ -23,7 +27,8 @@
   cursor: pointer;
 }
 .active_tab {
-  font-weight: 600;
+  font-weight: 800;
+  color: var(--twoColor);
 }
 .tab_content p {
   line-height: 30px;
@@ -36,8 +41,7 @@
   margin-top: 10px;
 }
 .review_form {
-  width: 70%;
-  margin: auto;
+  width: 100%;
   margin-top: 50px;
 }
 .review_form h4 {
@@ -72,6 +76,21 @@
   font-weight: 600;
   margin-top: 30px;
 }
+.commentProducts {
+  display: flex;
+  align-items: center;
+}
+.review_wrapper .imageRev {
+  width: 60px;
+  border: 2px solid var(--twoColor);
+  border-radius: 30px;
+  margin-left: 20px;
+}
+
+.commentProducts > span {
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
   .product_details h2 {
     font-size: 1.3rem;

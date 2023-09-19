@@ -1,0 +1,21 @@
+/* .SelectLaptop {
+  background-color: #f3f3f3;
+} */
+
+.Man_and_robot01,
+.Man_and_robot03 {
+  width: 500px;
+  margin: auto;
+  display: flex;
+}
+.Man_and_robot03 {
+  position: absolute;
+  left: 100px;
+  bottom: 340px;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

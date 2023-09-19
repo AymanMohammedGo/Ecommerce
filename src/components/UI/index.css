@@ -1,0 +1,165 @@
+.quixReuslt {
+  background-color: white !important;
+}
+.bestLaptop {
+  display: flex;
+  justify-content: center;
+}
+.sd-description {
+  margin-top: 20px !important;
+  font-size: 15px !important;
+}
+.sd-navigation__next-btn,
+.sd-navigation__prev-btn,
+.sd-navigation__complete-btn {
+  background-color: var(--twoColor);
+  color: white;
+}
+.Nofound {
+  margin-top: 8px;
+  color: var(--twoColor);
+}
+.sd-container-modern {
+  padding-bottom: 50px !important;
+  margin-bottom: 0px;
+}
+.sd-item--checked .sd-item__decorator {
+  background: var(--twoColor);
+}
+.sd-boolean__control:focus ~ .sd-boolean__switch {
+  box-shadow: inset 0 0 0 2px var(--twoColor);
+}
+.sd-item__control:focus + .sd-item__decorator {
+  box-shadow: 0 0 0 2px var(--twoColor) !important;
+}
+.sd-radio--checked .sd-radio__control:focus + .sd-radio__decorator:after {
+  background-color: var(--twoColor);
+}
+.sd-boolean__thumb {
+  color: var(--twoColor);
+}
+.sd-btn:not(:disabled):hover {
+  background-color: var(--oneColor);
+}
+.sd-row__question {
+  width: 650px !important;
+}
+:root {
+  --font-family: "Cairo", sans-serif;
+}
+.sd-element__title span {
+  font-weight: 700;
+  font-size: calc(2.5 * var(--base-unit, 8px));
+
+  line-height: calc(3 * var(--base-unit, 8px));
+}
+.sd-item__control-label {
+  text-align: start;
+}
+.des {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.sd-selectbase__label[aria-label="عمل يحتاج الى مواصفات منخفضة"]:hover .des,
+.sd-selectbase__label[aria-label="عمل يحتاج الى مواصفات متوسطة"]:hover .des,
+.sd-selectbase__label[aria-label="عمل يحتاج الى مواصفات عالية"]:hover .des {
+  display: block !important;
+}
+.sd-selectbase__label[aria-label="العاب تحتاج الى مواصفات منخفضة"]:hover .des,
+.sd-selectbase__label[aria-label="العاب تحتاج الى مواصفات متوسطة"]:hover .des,
+.sd-selectbase__label[aria-label="العاب تحتاج الى مواصفات عالية"]:hover .des {
+  display: block !important;
+}
+.sd-selectbase__label[aria-label="الحاسوب المحمول التقليدي"]:hover .des,
+.sd-selectbase__label[aria-label="الحاسوب المحمول القابل للتعديل"]:hover .des,
+.sd-selectbase__label[aria-label="الحاسوب المحمول للألعاب"]:hover .des {
+  display: block !important;
+}
+.allReusltButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reusltLaptop {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.shop_btnReuslt {
+  border: none;
+  outline: none;
+  padding: 20px 30px;
+  /* border-radius: 5px; */
+  background: var(--twoColor);
+  color: white;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-top: 30px;
+}
+.active_button {
+  width: 150%;
+}
+
+.swiper {
+  width: 400px;
+  height: 730px;
+  padding: 50px;
+}
+
+.swiper-slide {
+  /* width: 1400px !important; */
+  background-position: center;
+  background-size: cover;
+}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  content: "next";
+  background-color: var(--twoColor);
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-slide .undefined {
+  width: 100%;
+}
+
+/* CSS */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  width: 130px;
+  padding: 20px;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  background-color: var(--twoColor);
+  color: white;
+}
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background-color: var(--oneColor);
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--twoColor) !important;
+}
+.swiper-button-prev-custom {
+  top: 300px;
+  left: -140px;
+}
+
+.swiper-button-next-custom {
+  top: 300px;
+  right: -140px;
+}
+
+.text-above-arrow {
+  font-size: 14px;
+  margin-bottom: 15px;
+}

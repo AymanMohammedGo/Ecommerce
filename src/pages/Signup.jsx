@@ -3,7 +3,7 @@ import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
-
+import Spinner from "../components/UI/Spinner";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -58,11 +58,11 @@ const Signup = () => {
         }
       );
       setLoading(false);
-      toast.success("Account created");
+      toast.success("تم انشاء الحساب بنجاح");
       navigate("/login");
     } catch (error) {
       setLoading(false);
-      toast.error("something went wrong");
+      toast.error("حدث خطا بالتسجيل");
     }
   };
 
@@ -72,49 +72,59 @@ const Signup = () => {
         <Container>
           <Row>
             {loading ? (
-              <Col lg="12" className="m-auto text-center">
-                <h5 className="fw-bold">Loading.....</h5>
-              </Col>
+              <Spinner />
             ) : (
               <Col lg="6" className="m-auto text-center">
-                <h3 className="fw-bold mb-4">Signup</h3>
+                <h3 className="fw-bold mb-4">انشاء حساب</h3>
                 <Form className="auth_form" onSubmit={Signup}>
                   <FormGroup className="form_group">
                     <input
                       type="text"
-                      placeholder="UserName"
+                      placeholder="اسم المستخدم"
                       value={username}
+                      required
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup className="form_group">
                     <input
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder="اسم الايميل"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup className="form_group">
                     <input
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder="كلمة المرور"
                       value={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormGroup>
+
                   <FormGroup className="form_group">
-                    <input
-                      type="file"
-                      onChange={(e) => setFile(e.target.files[0])}
-                    />
+                    <div class="custom-file">
+                      <label class="custom-file-label" for="fileInput">
+                        اختر صورة لحسابك
+                      </label>
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        id="fileInput"
+                        required
+                        onChange={(e) => setFile(e.target.files[0])}
+                      />
+                    </div>
                   </FormGroup>
                   <button type="submit" className="shop_btn auth_btn">
-                    Create an Account
+                    انشاء حساب
                   </button>
                   <p>
-                    Already have an account?
-                    <Link to="/login"> Login</Link>
+                    هل لديك حساب سابق؟
+                    <Link to="/login">تسجيل دخول</Link>
                   </p>
                 </Form>
               </Col>

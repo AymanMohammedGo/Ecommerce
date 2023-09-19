@@ -1,9 +1,31 @@
-.billing_form .form_group input {
+.billing_form .form_group input,
+.billing_form .form_group select {
   border: 1px solid var(--card-bg-02);
+}
+.billing_form .form_group select {
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  background-position: left 0.75rem center;
+}
+.form-check .form-check-input {
+  float: right;
+  margin-right: -1.5em;
+}
+
+.form-check {
+  padding-right: 1.5em;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.form-check p {
+  font-size: 14px;
+}
+.form-check-input:checked {
+  background-color: var(--twoColor);
+  border-color: var(--twoColor);
 }
 .checkout_cart {
   padding: 20px;
-  background: var(--primary-color);
+  background: var(--oneColor);
   color: #fff;
   border-radius: 5px;
 }
@@ -19,4 +41,21 @@ h4 {
 .checkout_cart h4 {
   border-top: 1px solid rgba(221, 221, 221, 0.253);
   padding-top: 20px;
+}
+.cash .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px;
+  border: 2px solid var(--twoColor);
+  border-radius: 10px;
+}
+.bemo {
+  margin-bottom: 20px;
+  width: 96%;
+}
+.acount {
+  color: red;
+  font-size: 18px;
 }

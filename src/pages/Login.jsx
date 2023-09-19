@@ -7,6 +7,7 @@ import "../styles/login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase.confgi";
 import { toast } from "react-toastify";
+import Spinner from "../components/UI/Spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,8 +28,8 @@ const Login = () => {
       console.log(user);
 
       setLoading(false);
-      toast.success("Successfully logged in");
-      navigate("/checkout");
+      toast.success("تم تسجيل الدخول بنجاح");
+      navigate("/home");
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
@@ -41,17 +42,15 @@ const Login = () => {
         <Container>
           <Row>
             {loading ? (
-              <Col lg="12" className="m-auto text-center">
-                <h5 className="fw-bold">Loading.....</h5>
-              </Col>
+              <Spinner />
             ) : (
               <Col lg="6" className="m-auto text-center">
-                <h3 className="fw-bold mb-4">Login</h3>
+                <h3 className="fw-bold mb-4">تسجيل الدخول</h3>
                 <Form className="auth_form" onSubmit={signIn}>
                   <FormGroup className="form_group">
                     <input
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder="اسم الايميل"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -59,17 +58,17 @@ const Login = () => {
                   <FormGroup className="form_group">
                     <input
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder="كلمة المرور"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </FormGroup>
                   <button type="submit" className="shop_btn auth_btn">
-                    Login
+                    تسجيل الدخول
                   </button>
                   <p>
-                    Don't have an account?
-                    <Link to="/signup"> Create an account</Link>
+                    ليس لديك حساب سابق؟
+                    <Link to="/signup"> انشاء حساب جديد</Link>
                   </p>
                 </Form>
               </Col>

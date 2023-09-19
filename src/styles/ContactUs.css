@@ -1,0 +1,98 @@
+.contact .container .content {
+  display: flex;
+  justify-content: space-between;
+}
+.contact .container .content form {
+  flex-basis: 70%;
+}
+.main-heading h2 {
+  margin: 50px 0;
+}
+@media only screen and (max-width: 767px) {
+  .contact .container .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.contact .container .content form .main-input {
+  padding: 20px;
+  display: block;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+  width: 100%;
+}
+.contact .container .content form .main-input:focus {
+  outline: none;
+}
+.contact .container .content form textarea {
+  height: 200px;
+}
+.contact .container .content form input[type="submit"] {
+  display: flex;
+  margin-left: auto;
+  padding: 10px 20px;
+  color: white;
+  background-color: var(--oneColor);
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.contact .container .content .info {
+  flex-basis: 25%;
+}
+
+.contact .container .content .info h4 {
+  font-weight: 500;
+  margin-bottom: 30px;
+
+  font-size: 18px;
+}
+.contact .container .content .info h4:nth-of-type(2) {
+  margin-top: 100px;
+}
+@media only screen and (max-width: 767px) {
+  .contact .container .content .info h4:nth-of-type(2) {
+    margin-top: 30px;
+  }
+}
+.contact .container .content .info .phone {
+  display: block;
+  color: #777;
+  margin-bottom: 10px;
+}
+.contact .container .content .info address {
+  line-height: 2;
+  color: #777;
+}
+@media only screen and (max-width: 767px) {
+  .contact .container .content .info address {
+    margin-bottom: 40px;
+  }
+}
+.number-1,
+.number-2 {
+  display: flex;
+  margin: 10px 0 10px 0;
+}
+
+.number-1 i,
+.number-2 i {
+  margin-left: 20px;
+  border-radius: 6px;
+  padding: 5px 6px;
+  background-color: var(--twoColor);
+  font-size: 1.2rem;
+  color: white;
+}
+.address {
+  display: flex;
+}
+
+.address i {
+  margin-left: 20px;
+  border-radius: 6px;
+  padding: 3px 6px;
+  background-color: var(--twoColor);
+  font-size: 1.2rem;
+  color: white;
+}

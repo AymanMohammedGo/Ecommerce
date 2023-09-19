@@ -1,0 +1,19 @@
+.order {
+  background: var(--oneColor);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+.work {
+  background-color: #185e91 !important;
+}
+.work1 {
+  background-color: #009939 !important;
+}
+.NofoundOrder {
+  margin-bottom: 120px;
+}
