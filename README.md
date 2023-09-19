@@ -1,4 +1,4 @@
-Demo:https://e-commerce723.netlify.app/  \
+Demo:https://ecommerce723.netlify.app  \
 Features in the project :\
 Can Add products to cart and manage your cart by increase, decrease quantity or delete from cart, Save cart items in local storage Filter products by category , using search by name. \
 View product details , can see reviews , post a review . \
